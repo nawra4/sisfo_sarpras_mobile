@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -81,10 +83,10 @@ class _FormPengembalianScreenState extends State<FormPengembalianScreen> {
         itemImagePath,
       );
 
-      final message = 'Pengembalian Berhasil!';
+      const message = 'Pengembalian Berhasil!';
 
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(message)));
+          .showSnackBar(const SnackBar(content: Text(message)));
 
       Navigator.pushReplacement(
         context,
