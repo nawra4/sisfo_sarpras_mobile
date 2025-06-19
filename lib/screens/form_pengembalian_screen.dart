@@ -36,7 +36,7 @@ class _FormPengembalianScreenState extends State<FormPengembalianScreen> {
   File? _selectedImageFile; // For Android/iOS
   Uint8List? _selectedImageBytes; // For Web
 
-  Future<void> _pickImage() async {
+ Future<void> _pickImage() async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
@@ -56,6 +56,26 @@ class _FormPengembalianScreenState extends State<FormPengembalianScreen> {
     }
   }
 
+  Widget _buildImagePreview() {
+    if (kIsWeb && _selectedImageBytes != null) {
+      return Image.memory(
+        _selectedImageBytes!,
+        height: 150,
+        width: 150,
+        fit: BoxFit.cover,
+      );
+    } else if (_selectedImageFile != null) {
+      return Image.file(
+        _selectedImageFile!,
+        height: 150,
+        width: 150,
+        fit: BoxFit.cover,
+      );
+    } else {
+      return Text("Belum ada gambar yang dipilih.");
+    }
+  }
+
   Future<void> handlePengembalian() async {
     final kondisi = kondisiController.text.trim();
     final keterangan = keteranganController.text.trim();
@@ -67,8 +87,8 @@ class _FormPengembalianScreenState extends State<FormPengembalianScreen> {
     if (!kIsWeb) {
       itemImagePath = _selectedImageFile?.path;
     }
-    print("DEBUG - Path Gambar: $itemImagePath");
-    print("DEBUG - Image Bytes: ${_selectedImageBytes?.length}");
+    // print("DEBUG - Path Gambar: $itemImagePath");
+    // print("DEBUG - Image Bytes: ${_selectedImageBytes?.length}");
     final ApiServices api = ApiServices();
 
     try {
@@ -98,25 +118,7 @@ class _FormPengembalianScreenState extends State<FormPengembalianScreen> {
     }
   }
 
-  Widget _buildImagePreview() {
-    if (kIsWeb && _selectedImageBytes != null) {
-      return Image.memory(
-        _selectedImageBytes!,
-        height: 150,
-        width: 150,
-        fit: BoxFit.cover,
-      );
-    } else if (_selectedImageFile != null) {
-      return Image.file(
-        _selectedImageFile!,
-        height: 150,
-        width: 150,
-        fit: BoxFit.cover,
-      );
-    } else {
-      return Text("Belum ada gambar yang dipilih.");
-    }
-  }
+  
 
   @override
   Widget build(BuildContext context) {

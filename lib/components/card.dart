@@ -59,21 +59,14 @@ class ProductCard extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(16),
-                child: (imagePath == null || imagePath.isEmpty)
-                    ? Image.asset(
-                        "no_photo.jpg",
-                        width: 120,
-                        height: 120,
-                        fit: BoxFit.cover,
-                      )
-                    : Image.network(
+                child: Image.network(
                         "$baseurl/storage/gambar_barang/$imagePath",
                         width: 120,
                         height: 120,
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) {
                           return Image.asset(
-                            "assets/no_photo.png",
+                            "no_photo.jpg",
                             width: 120,
                             height: 120,
                             fit: BoxFit.cover,

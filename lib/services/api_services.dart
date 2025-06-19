@@ -121,7 +121,7 @@ class ApiServices {
       'jumlah': jumlah.toString(),
       'kondisi': kondisi,
       'keterangan': keterangan,
-      'item_image': item_image,
+      'item_image': item_image ?? '',
     });
   }
 
