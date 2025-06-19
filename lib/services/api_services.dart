@@ -1,5 +1,4 @@
 import 'dart:convert' as convert;
-import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -122,7 +121,7 @@ class ApiServices {
       'jumlah': jumlah.toString(),
       'kondisi': kondisi,
       'keterangan': keterangan,
-      'item_image': item_image.toString(),
+      'item_image': item_image,
     });
   }
 
