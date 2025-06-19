@@ -65,6 +65,8 @@ class _FormPengembalianScreenState extends State<FormPengembalianScreen> {
     if (!kIsWeb) {
       itemImagePath = _selectedImageFile?.path;
     }
+    print("DEBUG - Path Gambar: $itemImagePath");
+    print("DEBUG - Image Bytes: ${_selectedImageBytes?.length}");
     final ApiServices api = ApiServices();
 
     try {
